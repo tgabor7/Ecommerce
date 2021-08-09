@@ -9,10 +9,13 @@ import { Helmet } from 'react-helmet';
 import { ProductPage } from './components/ProductPage';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ShoppingCartPage } from './components/ShoppingCartPage';
+import { Provider } from 'react-redux';
+import { store } from './state/store';
+import { PostProduct } from './components/PostProduct';
 
 function App() {
   return (
-    <>
+    <div className='App'><Provider store={store}>
     <Helmet>
         <meta charSet="utf-8" />
         <title>{'Shop'}</title>
@@ -40,8 +43,12 @@ function App() {
     <Route exact path='/cart'>
       <ShoppingCartPage />
     </Route>
+    <Route exact path='/new'>
+      <PostProduct />
+    </Route>
     </BrowserRouter>
-    </>
+    </Provider>
+    </div>
   );
 }
 

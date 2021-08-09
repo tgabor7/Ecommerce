@@ -5,7 +5,7 @@
   font-weight: bold;
 }
 
-.card {
+:local(.card) {
   width: auto;
   height: auto;
 }
@@ -25,7 +25,8 @@
 
 .container {
   width: 50vw;
-  margin-left: 70vw;
+  margin-left: 20vw;
+  margin-top: 5px;
 }
 
 .container p {

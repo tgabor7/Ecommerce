@@ -1,6 +1,9 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
-import { getProduct, useCart, useProduct } from "../hooks"
+import { bindActionCreators } from "redux"
+import { getProduct, useCart, useProduct, useSessionStorage } from "../hooks"
+import { acionCreators } from "../state"
 
 import './ProductPage.css'
 
@@ -8,11 +11,12 @@ export const ProductPage: React.FC = () => {
 
     const { id } = useParams<{ id?: string }>()
 
-    const product = getProduct(id)
+    const [loading, product] = useProduct(id ? id : '')
 
     const [amount, setAmount] = useState<number>(1)
     
-    const [products, setProducts] = useCart()
+
+    const [value, setValue] = useSessionStorage('cart')
 
     return (<>{product ? <div><div className='card'>
         <div className='card-header'>
@@ -29,8 +33,7 @@ export const ProductPage: React.FC = () => {
             <div className='container'>
             <div className='price-container'><div>Amount:</div><input className='number-input' value={amount} onChange={e=>{setAmount(parseInt(e.target.value))}} type='number'></input></div>
             <button className='button is-primary is-pulled-right' onClick={()=>{
-                setProducts(['asd','qwe'])
-                console.log(products)
+                setValue(value ? value.concat([{product: product, amount: amount}]) : [{product: product, amount: amount}])
             }}>Add to cart</button></div>
             <p>{(product.price*amount) + '$'}</p>
             
