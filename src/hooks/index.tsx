@@ -69,7 +69,7 @@ export interface ProductDetails {
 }
 export const useSessionStorage = (key: string) => {
     let v = sessionStorage.getItem(key)
-    const [value, setValue] = useState(v ? JSON.parse(v) : null)
+    const [value, setValue] = useState(v ? JSON.parse(v) : [])
     useEffect(() => {
         sessionStorage.setItem(key, JSON.stringify(value))
     }, [key, value])

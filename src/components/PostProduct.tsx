@@ -2,7 +2,6 @@ import { JSXElement } from "@babel/types"
 import React, { useEffect, useRef, useState } from "react"
 import { post } from "../hooks"
 
-import './PostProduct.css'
 
 export const PostProduct: React.FC = () => {
     
@@ -24,7 +23,7 @@ export const PostProduct: React.FC = () => {
         return true
     }
     return (<>
-        <div className='card'>
+        <div className='card' style={{width: '50vw', margin: 'auto'}}>
             <div className='is-size-1 card-title p-2 has-text-centered'>
                 Post product
             </div>
@@ -48,11 +47,11 @@ export const PostProduct: React.FC = () => {
                 </div>
                     <textarea className='textarea' placeholder='Description' onChange={e=>{setDescription(e.target.value)}} value={description}></textarea>
                 </div>
-                <div className='price-input'>
-                    <p>$</p>
-                <input className='input' onChange={e=>{setPrice(parseFloat(e.target.value))}} value={price} type='number'></input>
+                <div className='price-input' style={{display: 'flex', fontWeight: 'bold', fontSize: '24px', marginBottom: '20px'}}>
+                    <p style={{marginLeft: '20px'}}>$</p>
+                <input className='input' onChange={e=>{setPrice(parseFloat(e.target.value))}} value={price} type='number' style={{width: '40vw', margin:'auto', fontSize: '16px'}}></input>
                 </div>
-                <div className='card-footer'>
+                <div className='card-footer p-4' >
                     <div className='container'>
                         <button className='button mt-0 is-pulled-right' onClick={()=>{
                             post({'name':name, 'description': description, 'price':price, 'images': links})

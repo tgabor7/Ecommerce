@@ -1,4 +1,3 @@
-import './SearchBar.css'
 
 export const SearchBar:React.FC = ()=>{
     
