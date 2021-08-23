@@ -1,6 +1,7 @@
 import { findByLabelText } from "@testing-library/react"
 import { useEffect, useState } from "react"
 import { getProducts, Product, useProduct, useProducts } from "../hooks"
+import { ProductCard } from "./ProductCard"
 
 export const ProductsPage:React.FC = ()=>{
     
@@ -49,18 +50,7 @@ export const ProductsPage:React.FC = ()=>{
     {'Page: ' + page}
     <div className='columns is-multiline is-mobile' style={itemsStyle}>
         {products.map(e=>{
-            return <div className='card product-card' style={cardStyle}>
-                <div className='header' style={{fontSize: '24px', textAlign: 'center', fontWeight: 'bold'}}><div onClick={()=>{
-                    window.location.href = '/item/' + e.id
-                }} className='item-name'>{e.name}</div></div>
-                <div className='content' style={{position: 'relative', display: 'block'}}>{e.images.length > 0 ? <img src={e.images[0]}></img>:<div className='image-placeholder'
-                style={{
-                    width: 'max-content',
-                    margin: 'auto'
-                }}><i className='fa fa-image' style={{fontSize: '10em'}}></i></div>}</div>
-                <div className='footer'>
-                <div className='item-price' style={{fontSize: '24px', float: 'right', fontWeight: 'bold'}}>{e.price + '$'}</div></div>
-            </div>
+            return <ProductCard product={e}></ProductCard>
         })}
         
         </div>
